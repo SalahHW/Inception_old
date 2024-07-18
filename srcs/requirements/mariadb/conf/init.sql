@@ -6,7 +6,7 @@ CREATE DATABASE IF NOT EXISTS wordpress;
 CREATE USER IF NOT EXISTS 'user'@'%' IDENTIFIED BY 'password';
 
 -- give all privileges to user on all object of wordpress database
-GRANT ALL PRIVILEGES ON wordpress.* TO 'wp_user'@'%';
+GRANT ALL PRIVILEGES ON wordpress.* TO 'user'@'%';
 
 -- immediate application of changes
 FLUSH PRIVILEGES;
