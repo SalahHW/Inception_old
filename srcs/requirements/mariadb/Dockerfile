@@ -14,4 +14,4 @@ RUN mkdir -p /var/run/mysqld && \
     chown -R mysql:mysql /var/lib/mysql && \
     mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
 
-CMD ["mysqld"]
+CMD ["mariadbd", "--user=mysql"]
