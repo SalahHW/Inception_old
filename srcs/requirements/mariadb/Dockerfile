@@ -13,4 +13,6 @@ RUN	mkdir -p /var/lib/mysql/ &&\
 COPY /conf/mariadb.cnf /etc/mysql/my.cnf
 COPY /conf/init.sql /init.sql
 
+EXPOSE 3306
+
 CMD [ "mariadbd", "--user=mysql" ]
