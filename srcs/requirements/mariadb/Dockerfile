@@ -1,5 +1,16 @@
-FROM		alpine:3.19
-RUN			apk update && apk add mariadb mariadb-client
+FROM alpine:3.19
 
-COPY		/conf/my.cnf /etc/mysql/mariadb.cnf
-COPY		/conf/init.sql /init.sql
+RUN apk update && apk add --no-cache mariadb mariadb-client
+
+RUN	mkdir -p /var/lib/mysql/ &&\
+	mkdir -p /run/mysqld/ &&\
+	chown -R mysql /var/lib/mysql/ &&\
+	touch /run/mysqld/mysqld.sock &&\
+	chown -R mysql:mysql /run/mysqld/ &&\
+	chmod 775 /run/mysqld/mysqld.sock &&\
+	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
+
+COPY /conf/mariadb.cnf /etc/mysql/my.cnf
+COPY /conf/init.sql /init.sql
+
+CMD [ "mariadbd", "--user=mysql" ]
