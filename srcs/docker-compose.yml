@@ -1,5 +1,5 @@
 services:
-  mysql:
+  mariadb:
     container_name: mariadb
     build:
       context: requirements/mariadb
