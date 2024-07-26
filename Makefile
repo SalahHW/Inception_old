@@ -8,7 +8,7 @@ stop:
 	docker compose -f srcs/docker-compose.yml down
 
 clean: stop
-	@docker system prune -a
-	@docker volume rm srcs_mariadb
+	@docker system prune -af
+	@docker volume rm -f srcs_mariadb
 
 re: clean start
