@@ -15,4 +15,9 @@ COPY /conf/init.sql /init.sql
 
 EXPOSE 3306
 
+ARG DB_NAME
+ARG DB_USER
+ARG DB_USER_PASSWORD
+ARG DB_ROOT_PASSWORD
+
 CMD [ "mariadbd", "--user=mysql" ]
