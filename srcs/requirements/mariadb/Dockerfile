@@ -11,7 +11,7 @@ RUN	mkdir -p /var/lib/mysql/ &&\
 	mariadb-install-db --user=mysql --datadir=/var/lib/mysql
 
 COPY /conf/mariadb.cnf /etc/mysql/my.cnf
-COPY /conf/init.sql /init.sql
+COPY /tools/entrypoint.sh /entrypoint.sh
 
 EXPOSE 3306
 
@@ -19,5 +19,8 @@ ARG DB_NAME
 ARG DB_USER
 ARG DB_USER_PASSWORD
 ARG DB_ROOT_PASSWORD
+
+RUN chmod +x entrypoint.sh &&\
+	./entrypoint.sh
 
 CMD [ "mariadbd", "--user=mysql" ]
