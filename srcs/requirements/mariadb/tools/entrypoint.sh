@@ -26,7 +26,8 @@ done
 	echo "ALTER USER 'root'@'localhost' IDENTIFIED BY '$DB_ROOT_PASSWORD';" >> init.sql
 	echo "FLUSH PRIVILEGES;" >> init.sql
 }
-sleep 5
-# execute sql scriptexit
 
+# execute sql script
 mariadb < init.sql
+
+rm init.sql
