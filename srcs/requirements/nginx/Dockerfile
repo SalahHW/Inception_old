@@ -14,3 +14,5 @@ RUN openssl req -x509 -nodes \
 
 COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./conf/inception.conf /etc/nginx/http.d/inception.conf
+
+CMD [ "nginx", "-g", "daemon off;" ]
