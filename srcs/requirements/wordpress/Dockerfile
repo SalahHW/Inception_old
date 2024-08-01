@@ -17,15 +17,15 @@ RUN apk update && \
 
 
 RUN wget https://fr.wordpress.org/wordpress-6.6-fr_FR.tar.gz \
--P /var/www/
+	-P /var/www/
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	-P /usr/local/bin/wp-cli/
 
 WORKDIR /var/www/
 
 RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
-rm -rf wordpress-6.6-fr_FR.tar.gz && \
-chown root:root ./wordpress
+	rm -rf wordpress-6.6-fr_FR.tar.gz && \
+	chown root:root ./wordpress
 
 WORKDIR /usr/local/bin/wp-cli/
 
