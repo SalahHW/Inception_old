@@ -26,3 +26,8 @@ WORKDIR /var/www/
 RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
 	rm -rf wordpress-6.6-fr_FR.tar.gz && \
 	chown root:root ./wordpress
+
+WORKDIR /
+
+COPY ./conf/php-fpm.conf /etc/php83/php-fpm.conf
+COPY ./conf/www.conf /etc/php83/php-fpm.d/www.conf
