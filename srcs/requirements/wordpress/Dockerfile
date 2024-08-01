@@ -17,7 +17,7 @@ RUN apk update && \
 
 
 RUN wget https://fr.wordpress.org/wordpress-6.6-fr_FR.tar.gz \
--P /var/www \
+-P /var/www/
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	-P /usr/local/bin/wp-cli/
 
