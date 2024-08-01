@@ -13,13 +13,14 @@ RUN apk update && \
 	php83-mbstring \
 	php83-exif \
 	php83-openssl \
-	php83-json
+	php83-json \
+	php83-phar
 
 
 RUN wget https://fr.wordpress.org/wordpress-6.6-fr_FR.tar.gz \
-	-P /var/www/
-RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
-	-P /usr/local/bin/wp-cli/
+	-P /var/www/ && \
+	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+	-P /usr/local/bin/
 
 WORKDIR /var/www/
 
@@ -27,11 +28,14 @@ RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
 	rm -rf wordpress-6.6-fr_FR.tar.gz && \
 	chown root:root ./wordpress
 
-WORKDIR /usr/local/bin/wp-cli/
+WORKDIR /usr/local/bin/
 
-RUN chmod +x wp-cli.phar
+RUN chmod +x wp-cli.phar && \
+	mv wp-cli.phar wp && \
+	ln -s /usr/bin/php83 /usr/bin/php
 
 WORKDIR /
 
 COPY ./conf/php-fpm.conf /etc/php83/php-fpm.conf
 COPY ./conf/www.conf /etc/php83/php-fpm.d/www.conf
+COPY ./tools/wp-config.sh ./wp-config.sh
