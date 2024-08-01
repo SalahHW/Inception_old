@@ -27,6 +27,10 @@ RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
 rm -rf wordpress-6.6-fr_FR.tar.gz && \
 chown root:root ./wordpress
 
+WORKDIR /usr/local/bin/wp-cli/
+
+RUN chmod +x wp-cli.phar
+
 WORKDIR /
 
 COPY ./conf/php-fpm.conf /etc/php83/php-fpm.conf
