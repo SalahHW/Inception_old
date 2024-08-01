@@ -16,7 +16,10 @@ RUN apk update && \
 	php83-json
 
 
-RUN wget https://fr.wordpress.org/wordpress-6.6-fr_FR.tar.gz -P /var/www
+RUN wget https://fr.wordpress.org/wordpress-6.6-fr_FR.tar.gz \
+-P /var/www \
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+	-P /usr/local/bin/wp-cli/
 
 WORKDIR /var/www/
 
