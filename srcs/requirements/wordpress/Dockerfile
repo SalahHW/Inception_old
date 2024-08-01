@@ -24,8 +24,8 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 WORKDIR /var/www/
 
 RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
-	rm -rf wordpress-6.6-fr_FR.tar.gz && \
-	chown root:root ./wordpress
+rm -rf wordpress-6.6-fr_FR.tar.gz && \
+chown root:root ./wordpress
 
 WORKDIR /
 
