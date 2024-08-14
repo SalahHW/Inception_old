@@ -10,8 +10,8 @@ stop:
 	docker compose -f srcs/docker-compose.yml down
 
 clean: stop
-	@rm -rf /home/sbouheni/data/mariadb
-	@rm -rf /home/sbouheni/data/wordpress
+	@sudo rm -rf /home/sbouheni/data/mariadb
+	@sudo rm -rf /home/sbouheni/data/wordpress
 	@docker system prune -af
 	@docker volume rm -f srcs_mariadb
 	@docker volume rm -f srcs_wordpress
