@@ -39,3 +39,5 @@ WORKDIR /
 COPY ./conf/php-fpm.conf /etc/php83/php-fpm.conf
 COPY ./conf/www.conf /etc/php83/php-fpm.d/www.conf
 COPY ./tools/wp-config.sh ./wp-config.sh
+
+CMD ["php-fpm83", "--nodaemonize"]
