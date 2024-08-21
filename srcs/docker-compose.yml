@@ -46,6 +46,8 @@ services:
     volumes:
       - wordpress:/var/www/wordpress
     restart: on-failure
+    depends_on:
+      - mariadb
 
 volumes:
 
