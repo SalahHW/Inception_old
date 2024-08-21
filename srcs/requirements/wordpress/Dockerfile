@@ -17,16 +17,14 @@ RUN apk update && \
 	php83-phar
 
 
-RUN wget https://fr.wordpress.org/wordpress-6.6-fr_FR.tar.gz \
-	-P /var/www/ && \
-	wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	-P /usr/local/bin/
 
-WORKDIR /var/www/
+# WORKDIR /var/www/
 
-RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
-	rm -rf wordpress-6.6-fr_FR.tar.gz && \
-	chown root:root ./wordpress
+# RUN tar -xvf /var/www/wordpress-6.6-fr_FR.tar.gz && \
+# 	rm -rf wordpress-6.6-fr_FR.tar.gz && \
+# 	chown root:root ./wordpress
 
 WORKDIR /usr/local/bin/
 
@@ -34,10 +32,15 @@ RUN chmod +x wp-cli.phar && \
 	mv wp-cli.phar wp && \
 	ln -s /usr/bin/php83 /usr/bin/php
 
-WORKDIR /
+RUN mkdir -p /var/www/wordpress
+
+WORKDIR /var/www/wordpress
 
 COPY ./conf/php-fpm.conf /etc/php83/php-fpm.conf
 COPY ./conf/www.conf /etc/php83/php-fpm.d/www.conf
 COPY ./tools/wp-config.sh ./wp-config.sh
+
+RUN	chmod +x ./wp-config.sh
+# 	./wp-config.sh
 
 CMD ["php-fpm83", "--nodaemonize"]
