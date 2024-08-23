@@ -7,16 +7,13 @@ if [ -f wp-config.php ];
     echo "wordpress is already installed"
   else
 	wp core download \
-	--locale=fr_FR \
-	--force
+	--locale=fr_FR
 
 	wp config create \
-	--allow-root \
 	--dbname=$DB_NAME \
 	--dbuser=$DB_USER \
 	--dbpass=$DB_USER_PASSWORD \
-	--dbhost=mariadb:3306 \
-	--force
+	--dbhost=mariadb:3306
 
 	wp core install \
 	--url=$WP_URL \
@@ -32,5 +29,7 @@ if [ -f wp-config.php ];
     --display_name="$WP_DISPLAY_NAME" \
     --role="author"
 fi
+
+chown -R www-data:www-data /var/www/wordpress
 
 php-fpm83 --nodaemonize
