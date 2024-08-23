@@ -15,11 +15,6 @@ COPY /tools/entrypoint.sh /entrypoint.sh
 
 EXPOSE 3306
 
-ARG DB_NAME
-ARG DB_USER
-ARG DB_USER_PASSWORD
-ARG DB_ROOT_PASSWORD
-
 RUN chmod +x entrypoint.sh &&\
 	./entrypoint.sh
 
