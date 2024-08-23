@@ -16,6 +16,8 @@ RUN apk update && \
 	php83-json \
 	php83-phar
 
+RUN adduser -D -S -G www-data www-data
+
 RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
 	-P /usr/local/bin/
 
@@ -24,9 +26,10 @@ WORKDIR /usr/local/bin/
 RUN chmod +x wp-cli.phar && \
 	mv wp-cli.phar wp && \
 	ln -s /usr/bin/php83 /usr/bin/php
-
+	
+	
 RUN mkdir -p /var/www/wordpress
-
+	
 WORKDIR /var/www/wordpress
 
 COPY ./conf/php-fpm.conf /etc/php83/php-fpm.conf
