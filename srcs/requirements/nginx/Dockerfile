@@ -10,9 +10,9 @@ RUN mkdir -p /etc/nginx/ssl/ && \
 RUN openssl req -x509 -nodes \
 	-out /etc/nginx/ssl/inception.crt \
 	-keyout /etc/nginx/ssl/inception.key \
-	-subj "/C=FR/ST=ALSACE/L=Mulhouse/O=42/OU=student/CN=salah/UID=sbouheni@student.42mulhouse.fr"
+	-subj "/C=FR/ST=ALSACE/L=Mulhouse/O=42/OU=student/CN=sbouheni/UID=sbouheni@student.42mulhouse.fr"
 
-COPY ./conf/nginx.conf /etc/nginx/nginx.conf
+# COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 COPY ./conf/inception.conf /etc/nginx/http.d/sbouheni.42.fr.conf
 
 RUN rm -rf /etc/nginx/http.d/default.conf
